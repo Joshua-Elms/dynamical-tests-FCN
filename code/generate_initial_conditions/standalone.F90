@@ -251,7 +251,7 @@ IF((KTESTCASE == 41) .OR. (KTESTCASE == 42)) THEN
       IF (JK .EQ. JN) THEN
         BINOMIAL(JN,JK)=1.0
       ELSE
-	BINOMIAL(JN,JK)=1.0
+        BINOMIAL(JN,JK)=1.0
         DO JI=0,JK-1
           BINOMIAL(JN,JK)=(BINOMIAL(JN,JK)*(JN-JI))/(JI+1)
         ENDDO
