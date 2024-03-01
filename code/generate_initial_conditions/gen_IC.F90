@@ -66,6 +66,7 @@ IMPLICIT NONE
 !     Author.
 !     -------
 !        C. BOUVIER
+!        Additions: Joshua Elms
 
 INTEGER, PARAMETER :: INT_KIND = SELECTED_INT_KIND(18)  ! Use 18 or another appropriate value
 INTEGER(INT_KIND), INTENT(IN) :: NLAT, NLEV, ZN, KTESTCASE, BIN_LIM, GAM_LIM
