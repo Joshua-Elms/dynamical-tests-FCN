@@ -25,4 +25,4 @@ Defaults:
     FILENAME - "fields.csv"
 
 Default cmd: 
-    ./gen_init_conditions.out 320 137 3 2.0 0.8 288.0 35.0 0.005 42 fields.csv
+    ./gen_IC.out 320 137 3 2.0 0.8 288.0 35.0 0.005 42 fields.csv
