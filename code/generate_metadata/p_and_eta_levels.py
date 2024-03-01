@@ -14,12 +14,24 @@ def eta_to_p(eta, ps: float = 1013.25):
     """
     return eta*ps
 
+def write_levels(output_path, p_levels = None, eta_levels = None):
+    """
+    Use p or eta to find the other and write both to a file
+    """
+    if p_levels is None and eta_levels is None:
+        raise ValueError("Either p_levels or eta_levels must be provided")
+    
+    elif p_levels is None:
+        p_levels = eta_to_p(eta_levels)
+
+    elif eta_levels is None:
+        eta_levels = p_to_eta(p_levels)
+
+    merged = np.vstack((p_levels, eta_levels)).T
+    np.savetxt(output_path, merged, delimiter=",", fmt="%.15f", header="p,eta", comments="")
+    print(f"Levels written to {output_path}")
+
 if __name__=="__main__":
-    ps = 1013.25 # mb at lowest model level (surface)
     p_levels = np.array([1013.25, 1000, 925, 850, 750, 700, 600, 500, 400, 300, 250, 200, 150, 100, 50])
     output_path = "levels.txt"
-
-    eta_levels = p_to_eta(p_levels, ps)
-    merged = np.vstack((p_levels, eta_levels)).T
-
-    np.savetxt(output_path, merged, delimiter=",", fmt="%.10f", header="p,eta", comments="")
+    write_levels(output_path, p_levels=p_levels)

@@ -1,5 +1,7 @@
 Details on the CLI for gen_init_conditions.out
 
+gen_IC.F90 has been hardcoded (values for VETAF, GELAT_DEG, and GELAT) for FourCastNet, particularly the 73 channel SFNO version
+
 Args in order:
     NLAT     - number of latitude ticks, must agree with GELAT_DEG and GELAT
     NLEV     - number of levels, must agree with VETAF
