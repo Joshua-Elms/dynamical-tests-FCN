@@ -15,8 +15,8 @@ Args in order:
     FILENAME - Output location for csv file containing NLAT x NLEV rows and all fields needed to run FCN
 
 Defaults: 
-    NLAT     - 320
-    NLEV     - 137
+    NLAT     - 721
+    NLEV     - 15
     ZN       - 3
     ZB       - 2.0
     ZRH0     - 0.8
@@ -26,5 +26,8 @@ Defaults:
     MOISTURE - 42
     FILENAME - "fields.csv"
 
-Default cmd: 
+Running downloaded version: 
     ./gen_IC.out 320 137 3 2.0 0.8 288.0 35.0 0.005 42 fields.csv
+
+Running FCN (this) version:
+    ./gen_IC_FCN.out 721 15 3 2.0 0.8 288.0 35.0 0.005 42 fields.csv
