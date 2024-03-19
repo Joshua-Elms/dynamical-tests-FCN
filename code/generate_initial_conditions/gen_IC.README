@@ -30,4 +30,4 @@ Running downloaded version:
     ./gen_IC.out 320 137 3 2.0 0.8 288.0 35.0 0.005 42 fields.csv
 
 Running FCN (this) version:
-    ./gen_IC_FCN.out 721 15 3 2.0 0.8 288.0 35.0 0.005 42 fields.csv
+    ./gen_IC_FCN.out 721 102 3 2.0 0.8 288.0 35.0 0.005 42 fields.csv

@@ -21,10 +21,10 @@ def numeric_arr_to_fort_str(arr: list, name: str, precision: int = 15, row_width
 
 if __name__=="__main__":
     # Generate VETAF array
-    full_arr = np.genfromtxt("levels.txt", delimiter=",", skip_header=1)
+    full_arr = np.genfromtxt("levels_full.txt", delimiter=",", skip_header=1)
     eta_arr = full_arr[:, 1].tolist()
     fstr = numeric_arr_to_fort_str(eta_arr, "VETAF", row_width=2)
-    # print(fstr)
+    print(fstr)
 
     # Generate GELAT_DEG and GELAT arrays
     arr = np.genfromtxt("lats_for_gen_IC.txt", delimiter=",", skip_header=1)
@@ -33,5 +33,5 @@ if __name__=="__main__":
     deg_str = numeric_arr_to_fort_str(deg, "GELAT_DEG", row_width=8, precision=2)
     rad_str = numeric_arr_to_fort_str(rad, "GELAT", row_width=5, precision=8)
 
-    print(deg_str)
-    print(rad_str)
+    # print(deg_str)
+    # print(rad_str)
