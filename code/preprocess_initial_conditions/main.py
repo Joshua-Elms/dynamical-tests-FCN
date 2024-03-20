@@ -152,16 +152,20 @@ def main(
     ds_73 = ds_73.to_dataset(name="data")
 
     # save to disk
-    # ds_73.to_netcdf(output_to_dir / f_out_name)
+    ds_73.to_netcdf(output_to_dir / f_out_name)
 
     # check
     # print(ds_73)
-    for l in lat:
-        print(l)
+    # for i, l in enumerate(lat):
+    #     if i % 10 == 0:
+    #         print("")
+    #     print(l, end=",")
 
-    print("-------------------")
-    for l in lon:
-        print(l)
+    # print("-------------------")
+    # for i, l in enumerate(lon):
+    #     if i % 10 == 0:
+    #         print("")
+    #     print(l, end=",")
 
 
 
