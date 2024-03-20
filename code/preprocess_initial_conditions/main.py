@@ -156,17 +156,9 @@ def main(
 
     # check
     # print(ds_73)
-    # for i, l in enumerate(lat):
-    #     if i % 10 == 0:
-    #         print("")
-    #     print(l, end=",")
 
-    # print("-------------------")
-    # for i, l in enumerate(lon):
-    #     if i % 10 == 0:
-    #         print("")
-    #     print(l, end=",")
-
+    # inform user
+    print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
 
 
 if __name__ == "__main__":
