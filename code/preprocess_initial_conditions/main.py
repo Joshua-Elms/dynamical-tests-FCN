@@ -1,9 +1,7 @@
-from utils import *
 import numpy as np
 import pandas as pd
 import xarray as xr
 from pathlib import Path
-import matplotlib.pyplot as plt
 import scipy
 
 
@@ -132,7 +130,7 @@ def main(
 
     # now standardize the dataset
     ## TODO
-    
+
 
 
 if __name__ == "__main__":
