@@ -559,9 +559,6 @@ SUBROUTINE WRITE_FIELDS_TO_CSV(NLAT, NLEV, ZPHI_F, ZU, ZV, ZT, ZQ, ZRH, FILENAME
   ! Write the header row
   WRITE(UNIT, '(A)') HEADER
 
-  ! testing this format field: "(*(G0,:,','))"
-  ! but this is my other setup:  WRITE(UNIT, '(I4, I4, F20.10, F20.10, F20.10, F20.10)') I-1, J-1, ZPHI_F(I, J), ZU(I, J), ZT(I, J), ZQ(I, J) ! LAT=I, LEV=J, using zero indexing
-
   ! Write the first NLEV rows for which ZRH is defined
   DO J = 1, NLEV
 
@@ -569,12 +566,12 @@ SUBROUTINE WRITE_FIELDS_TO_CSV(NLAT, NLEV, ZPHI_F, ZU, ZV, ZT, ZQ, ZRH, FILENAME
 
   END DO
 
-  ! Write the rest of the rows
+  ! Write the rest of the rows (ZRH will be zero for these rows)
 
   DO I = 2, NLAT
     DO J = 1, NLEV
       
-      WRITE(UNIT, "(*(G0,:,','))") I-1, J-1, ZPHI_F(I, J), ZU(I, J), ZV(I, J), ZT(I, J), ZQ(I, J) ! LAT=I, LEV=J, using zero indexing
+      WRITE(UNIT, "(*(G0,:,','))") I-1, J-1, ZPHI_F(I, J), ZU(I, J), ZV(I, J), ZT(I, J), ZQ(I, J), 0 ! LAT=I, LEV=J, using zero indexing
 
     END DO
   END DO
