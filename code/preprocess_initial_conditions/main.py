@@ -45,10 +45,14 @@ def compute_tcwv(q: np.ndarray, lev: np.ndarray) -> np.ndarray:
 def main(
         fort_output_dir: Path,
         f_in_name: str,
+        stats_dir: Path,
+        means_fname: str,
+        stds_fname: str,
         metadata_dir: Path,
         lat_fname: str,
         lon_fname: str,
         lev_fname: str,
+        channels_fname: str,
         output_to_dir: Path,
         f_out_name: str,
         nlat: int,
@@ -57,8 +61,8 @@ def main(
 
     df, nlev = read_to_df(fort_output_dir, f_in_name, nlat)
 
-    # extract vertical RH profile
-    rh = df["ZRH"].values[:nlev]
+    # extract vertical RH profile, convert to percentage
+    rh = df["ZRH"].values[:nlev] * 100
 
     # remove RH from dataframe
     df = df.drop(columns=["ZRH"])
@@ -117,19 +121,47 @@ def main(
     v = df["ZV"].values.reshape(nlat, nlev)
     t = df["ZT"].values.reshape(nlat, nlev)
     # lowest model level instead of 10 meter winds
-    ds_73["10u"] = (["lat"], u[:, 0])
-    ds_73["10v"] = (["lat"], v[:, 0])
+    ds_73["u10m"] = (["lat"], u[:, 0])
+    ds_73["v10m"] = (["lat"], v[:, 0])
     # lowest model level instead of 100 meter winds
-    ds_73["100u"] = (["lat"], u[:, 0])
-    ds_73["100v"] = (["lat"], v[:, 0])
+    ds_73["u100m"] = (["lat"], u[:, 0])
+    ds_73["v100m"] = (["lat"], v[:, 0])
     # lowest model level instead of 2 meter temperature
-    ds_73["2t"] = (["lat"], t[:, 0])
+    ds_73["t2m"] = (["lat"], t[:, 0])
 
-    # expand all variables along longitude dimension; while Bouvier et al. only outputs one meridional slice, we need the whole domain for SFNO
-    ds_73 = ds_73.expand_dims({"lon": lon})
+    # find channel order
+    channels = np.loadtxt(metadata_dir / channels_fname, dtype=str)
+
+    # convert from data variables to channel as coordinate
+    arr_lst = [ds_73[ch].data for ch in channels]
+    stacked = np.stack(arr_lst, axis=0)
+    ds_73 = xr.DataArray(stacked, dims=["channel", "lat"], coords={"channel": channels, "lat": lat})
 
     # now standardize the dataset
-    ## TODO
+    # means and stds are global and time invariant, unlike other versions of FCN
+    means = np.load(stats_dir / means_fname).reshape(-1, 1)
+    stds = np.load(stats_dir / stds_fname).reshape(-1, 1)
+
+    ds_73 = (ds_73 - means) / stds
+    # for i, (ch, m, s) in enumerate(zip(channels, means, stds)):
+    #     print(f"{ch}: {m} {s}")
+
+    # expand all variables along longitude dimension
+    # while Bouvier et al. only outputs one meridional slice, we need the whole domain for SFNO
+    ds_73 = ds_73.expand_dims({"lon": lon}, axis=1) # unsure which axis to expand along
+    ds_73 = ds_73.to_dataset(name="data")
+
+    # save to disk
+    # ds_73.to_netcdf(output_to_dir / f_out_name)
+
+    # check
+    # print(ds_73)
+    for l in lat:
+        print(l)
+
+    print("-------------------")
+    for l in lon:
+        print(l)
 
 
 
@@ -138,18 +170,30 @@ if __name__ == "__main__":
     data_dir = Path(
         "/N/slate/jmelms/projects/FCN_dynamical_testing/data/initial_conditions/")
 
+    stats_dir = Path(
+        "/N/u/jmelms/BigRed200/projects/dynamical-tests-FCN/data/"
+    )
+
     metadata_dir = Path(
         "/N/u/jmelms/BigRed200/projects/dynamical-tests-FCN/metadata/")
 
     main(
         fort_output_dir=data_dir / "raw_fort_output",
         f_in_name="fields1.csv",
+
+        stats_dir=stats_dir,
+        means_fname="global_means.npy",
+        stds_fname="global_stds.npy",
+
         metadata_dir=metadata_dir,
         lat_fname="latitude.npy",
         lon_fname="longitude.npy",
         lev_fname="p_eta_levels_full.txt",
-        output_to_dir=data_dir / "processed_initial_conditions",
-        f_out_name="field1.nc",
+        channels_fname="fcnv2_sm_channel_order.txt",
+
+        output_to_dir=data_dir / "processed_ic_sets" / "test_data_source" / "idealized",
+        f_out_name="data.h5",
+
         nlat=721,
         keep_plevs=[1000, 925, 850, 700, 600, 500,
                     400, 300, 250, 200, 150, 100, 50]  # 13 levels used for 73 ch SFNO
