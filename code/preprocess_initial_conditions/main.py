@@ -148,17 +148,24 @@ def main(
 
     # expand all variables along longitude dimension
     # while Bouvier et al. only outputs one meridional slice, we need the whole domain for SFNO
-    ds_73 = ds_73.expand_dims({"lon": lon}, axis=1) # unsure which axis to expand along
+    ds_73 = ds_73.expand_dims({"lon": lon}, axis=2) # unsure which axis to expand along
     ds_73 = ds_73.to_dataset(name="data")
 
+    # # add time dimension because it's required for the inference function
+    ds_73 = ds_73.expand_dims({"time": [0]}, axis=0)
+
+    # remove coords to let SFNO feel important when it puts them back on
+    
+
     # save to disk
-    ds_73.to_netcdf(output_to_dir / f_out_name)
+    # ds_73.to_netcdf(output_to_dir / f_out_name)
 
     # check
-    # print(ds_73)
+    print(ds_73)
+    print(ds_73.coords["channel"])
 
     # inform user
-    print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
+    # print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
 
 
 if __name__ == "__main__":
@@ -188,7 +195,7 @@ if __name__ == "__main__":
         channels_fname="fcnv2_sm_channel_order.txt",
 
         output_to_dir=data_dir / "processed_ic_sets" / "test_data_source" / "idealized",
-        f_out_name="data.h5",
+        f_out_name="1001.h5",
 
         nlat=721,
         keep_plevs=[1000, 925, 850, 700, 600, 500,
