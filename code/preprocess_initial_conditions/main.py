@@ -135,7 +135,8 @@ def main(
     # convert from data variables to channel as coordinate
     arr_lst = [ds_73[ch].data for ch in channels]
     stacked = np.stack(arr_lst, axis=0)
-    ds_73 = xr.DataArray(stacked, dims=["channel", "lat"], coords={"channel": channels, "lat": lat})
+    ds_73 = xr.DataArray(stacked, dims=["channel", "lat"], coords={
+                         "channel": channels, "lat": lat})
 
     # now standardize the dataset
     # means and stds are global and time invariant, unlike other versions of FCN
@@ -143,29 +144,28 @@ def main(
     stds = np.load(stats_dir / stds_fname).reshape(-1, 1)
 
     ds_73 = (ds_73 - means) / stds
+    # print out means and stds for each channel for sanity check
     # for i, (ch, m, s) in enumerate(zip(channels, means, stds)):
     #     print(f"{ch}: {m} {s}")
 
     # expand all variables along longitude dimension
     # while Bouvier et al. only outputs one meridional slice, we need the whole domain for SFNO
-    ds_73 = ds_73.expand_dims({"lon": lon}, axis=2) # unsure which axis to expand along
+    # unsure which axis to expand along
+    ds_73 = ds_73.expand_dims({"lon": lon}, axis=2)
     ds_73 = ds_73.to_dataset(name="data")
 
     # # add time dimension because it's required for the inference function
     ds_73 = ds_73.expand_dims({"time": [0]}, axis=0)
 
-    # remove coords to let SFNO feel important when it puts them back on
-    
-
     # save to disk
-    # ds_73.to_netcdf(output_to_dir / f_out_name)
+    ds_73.to_netcdf(output_to_dir / f_out_name)
 
-    # check
+    # look at data
     print(ds_73)
-    print(ds_73.coords["channel"])
+    # print(ds_73.coords["channel"])
 
     # inform user
-    # print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
+    print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
 
 
 if __name__ == "__main__":
