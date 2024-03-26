@@ -45,14 +45,13 @@ def compute_tcwv(q: np.ndarray, lev: np.ndarray) -> np.ndarray:
 def main(
         fort_output_dir: Path,
         f_in_name: str,
-        stats_dir: Path,
-        means_fname: str,
-        stds_fname: str,
         metadata_dir: Path,
         lat_fname: str,
         lon_fname: str,
         lev_fname: str,
         channels_fname: str,
+        means_fname: str,
+        stds_fname: str,
         output_to_dir: Path,
         f_out_name: str,
         nlat: int,
@@ -84,8 +83,8 @@ def main(
     rh = np.tile(rh[keep_idxs], (nlat, 1))
 
     # create pressure vars, both constant due to initiation at sea level
-    sp = np.full_like(tcwv, 1013.25)
-    msl = np.full_like(tcwv, 1013.25)
+    sp = np.full_like(tcwv, 1013.25) * 100  # convert hPa to Pa
+    msl = np.full_like(tcwv, 1013.25) * 100  # convert hPa to Pa
 
     # create xarray dataset
     ds_73 = xr.Dataset(
@@ -140,8 +139,8 @@ def main(
 
     # now standardize the dataset
     # means and stds are global and time invariant, unlike other versions of FCN
-    means = np.load(stats_dir / means_fname).reshape(-1, 1)
-    stds = np.load(stats_dir / stds_fname).reshape(-1, 1)
+    means = np.load(metadata_dir / means_fname).reshape(-1, 1)
+    stds = np.load(metadata_dir / stds_fname).reshape(-1, 1)
 
     ds_73 = (ds_73 - means) / stds
     # print out means and stds for each channel for sanity check
@@ -173,10 +172,6 @@ if __name__ == "__main__":
     data_dir = Path(
         "/N/slate/jmelms/projects/FCN_dynamical_testing/data/initial_conditions/")
 
-    stats_dir = Path(
-        "/N/u/jmelms/BigRed200/projects/dynamical-tests-FCN/data/"
-    )
-
     metadata_dir = Path(
         "/N/u/jmelms/BigRed200/projects/dynamical-tests-FCN/metadata/")
 
@@ -184,15 +179,13 @@ if __name__ == "__main__":
         fort_output_dir=data_dir / "raw_fort_output",
         f_in_name="fields1.csv",
 
-        stats_dir=stats_dir,
-        means_fname="global_means.npy",
-        stds_fname="global_stds.npy",
-
         metadata_dir=metadata_dir,
         lat_fname="latitude.npy",
         lon_fname="longitude.npy",
         lev_fname="p_eta_levels_full.txt",
         channels_fname="fcnv2_sm_channel_order.txt",
+        means_fname="global_means.npy",
+        stds_fname="global_stds.npy",
 
         output_to_dir=data_dir / "processed_ic_sets" / "test_data_source" / "idealized",
         f_out_name="1001.h5",

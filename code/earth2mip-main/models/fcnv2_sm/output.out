@@ -1,7 +1,8 @@
+Beginning inference script
 Loading FCNv2 Small Model...
-Model loaded. Duration: 6.06 seconds
+Model loaded. Duration: 5.67 seconds
 Starting 52 iterations of inference...
-Inference finished. Duration: 340.49 seconds
+Inference finished. Duration: 328.37 seconds
 Output: 
 
  <xarray.DataArray (time: 53, history: 1, channel: 73, lat: 721, lon: 1440)>
@@ -52,4 +53,5 @@ Coordinates:
   * channel  (channel) <U5 'u10m' 'v10m' 'u100m' ... 'r850' 'r925' 'r1000'
   * time     (time) int64 0 21600000000000 ... 1101600000000000 1123200000000000
 Dimensions without coordinates: history
-Output saved to: /N/slate/jmelms/projects/FCN_dynamical_testing/data/output/full_output.nc
+Output saved to: /N/slate/jmelms/projects/FCN_dynamical_testing/data/output/full_output_corrected.nc
+Inference script complete
