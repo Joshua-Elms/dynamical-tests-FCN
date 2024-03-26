@@ -163,6 +163,10 @@ def main(
     print(ds_73)
     # print(ds_73.coords["channel"])
 
+    breakpoint()
+
+    print("mslp is: ", ds_73["msl"])
+
     # inform user
     print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
 
