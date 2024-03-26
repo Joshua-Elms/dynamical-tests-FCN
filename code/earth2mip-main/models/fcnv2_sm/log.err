@@ -1,0 +1,131 @@
++ source activate /N/u/jmelms/BigRed200/envs/earth2mip
+++ _CONDA_ROOT=/N/slate/jmelms/software/bigred200/miniconda3
+++ . /N/slate/jmelms/software/bigred200/miniconda3/etc/profile.d/conda.sh
++++ export CONDA_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/conda
++++ CONDA_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/python
++++ CONDA_PYTHON_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/python
++++ '[' -z x ']'
+++ conda activate /N/u/jmelms/BigRed200/envs/earth2mip
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate /N/u/jmelms/BigRed200/envs/earth2mip
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate /N/u/jmelms/BigRed200/envs/earth2mip
++++ /N/slate/jmelms/software/bigred200/miniconda3/bin/conda shell.posix activate /N/u/jmelms/BigRed200/envs/earth2mip
+++ ask_conda='. "/geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/proj4-deactivate.sh"
+. "/geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/libxml2_deactivate.sh"
+. "/geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/libglib_deactivate.sh"
+PS1='\''(earth2mip) '\''
+export PATH='\''/N/u/jmelms/bin:/N/u/jmelms/BigRed200/envs/earth2mip/bin:/geode2/home/u040/jmelms/BigRed200/.vscode-server/cli/servers/Stable-863d2581ecda6849923a2118d93a088b0745d9d6/server/bin/remote-cli:/N/u/jmelms/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/condabin:/N/soft/sles15/xalt/2.10.34/bin:/N/soft/sles15/quotas/1.8/bin:/opt/cray/pe/mpich/8.1.23/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.23/bin:/opt/cray/pe/craype/2.7.19/bin:/opt/cray/pe/gcc/11.2.0/bin:/opt/cray/pe/perftools/22.12.0/bin:/opt/cray/pe/papi/6.0.0.17/bin:/opt/cray/libfabric/1.11.0.4.111/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/sbin:/opt/cray/pe/bin'\''
+export CONDA_PREFIX='\''/N/u/jmelms/BigRed200/envs/earth2mip'\''
+export CONDA_SHLVL='\''7'\''
+export CONDA_DEFAULT_ENV='\''earth2mip'\''
+export CONDA_PROMPT_MODIFIER='\''(earth2mip) '\''
+export CONDA_PREFIX_6='\''/geode2/home/u040/jmelms/BigRed200/envs/earth2mip'\''
+export CONDA_EXE='\''/N/slate/jmelms/software/bigred200/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/N/slate/jmelms/software/bigred200/miniconda3/bin/python'\''
+. "/N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/libglib_activate.sh"
+. "/N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/libxml2_activate.sh"
+. "/N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/proj4-activate.sh"'
+++ eval '. "/geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/proj4-deactivate.sh"
+. "/geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/libxml2_deactivate.sh"
+. "/geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/libglib_deactivate.sh"
+PS1='\''(earth2mip) '\''
+export PATH='\''/N/u/jmelms/bin:/N/u/jmelms/BigRed200/envs/earth2mip/bin:/geode2/home/u040/jmelms/BigRed200/.vscode-server/cli/servers/Stable-863d2581ecda6849923a2118d93a088b0745d9d6/server/bin/remote-cli:/N/u/jmelms/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/condabin:/N/soft/sles15/xalt/2.10.34/bin:/N/soft/sles15/quotas/1.8/bin:/opt/cray/pe/mpich/8.1.23/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.23/bin:/opt/cray/pe/craype/2.7.19/bin:/opt/cray/pe/gcc/11.2.0/bin:/opt/cray/pe/perftools/22.12.0/bin:/opt/cray/pe/papi/6.0.0.17/bin:/opt/cray/libfabric/1.11.0.4.111/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/sbin:/opt/cray/pe/bin'\''
+export CONDA_PREFIX='\''/N/u/jmelms/BigRed200/envs/earth2mip'\''
+export CONDA_SHLVL='\''7'\''
+export CONDA_DEFAULT_ENV='\''earth2mip'\''
+export CONDA_PROMPT_MODIFIER='\''(earth2mip) '\''
+export CONDA_PREFIX_6='\''/geode2/home/u040/jmelms/BigRed200/envs/earth2mip'\''
+export CONDA_EXE='\''/N/slate/jmelms/software/bigred200/miniconda3/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/N/slate/jmelms/software/bigred200/miniconda3/bin/python'\''
+. "/N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/libglib_activate.sh"
+. "/N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/libxml2_activate.sh"
+. "/N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/proj4-activate.sh"'
++++ . /geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/proj4-deactivate.sh
+++++ unset PROJ_DATA
+++++ unset PROJ_NETWORK
+++++ '[' -n '' ']'
++++ . /geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/libxml2_deactivate.sh
+++++ test -n ''
+++++ unset XML_CATALOG_FILES
+++++ unset xml_catalog_files_libxml2
++++ . /geode2/home/u040/jmelms/BigRed200/envs/earth2mip/etc/conda/deactivate.d/libglib_deactivate.sh
+++++ export GSETTINGS_SCHEMA_DIR=
+++++ GSETTINGS_SCHEMA_DIR=
+++++ unset GSETTINGS_SCHEMA_DIR_CONDA_BACKUP
+++++ '[' -z ']'
+++++ unset GSETTINGS_SCHEMA_DIR
++++ PS1='(earth2mip) '
++++ export PATH=/N/u/jmelms/bin:/N/u/jmelms/BigRed200/envs/earth2mip/bin:/geode2/home/u040/jmelms/BigRed200/.vscode-server/cli/servers/Stable-863d2581ecda6849923a2118d93a088b0745d9d6/server/bin/remote-cli:/N/u/jmelms/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/condabin:/N/soft/sles15/xalt/2.10.34/bin:/N/soft/sles15/quotas/1.8/bin:/opt/cray/pe/mpich/8.1.23/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.23/bin:/opt/cray/pe/craype/2.7.19/bin:/opt/cray/pe/gcc/11.2.0/bin:/opt/cray/pe/perftools/22.12.0/bin:/opt/cray/pe/papi/6.0.0.17/bin:/opt/cray/libfabric/1.11.0.4.111/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/sbin:/opt/cray/pe/bin
++++ PATH=/N/u/jmelms/bin:/N/u/jmelms/BigRed200/envs/earth2mip/bin:/geode2/home/u040/jmelms/BigRed200/.vscode-server/cli/servers/Stable-863d2581ecda6849923a2118d93a088b0745d9d6/server/bin/remote-cli:/N/u/jmelms/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/bin:/N/slate/jmelms/software/bigred200/miniconda3/condabin:/N/soft/sles15/xalt/2.10.34/bin:/N/soft/sles15/quotas/1.8/bin:/opt/cray/pe/mpich/8.1.23/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.23/bin:/opt/cray/pe/craype/2.7.19/bin:/opt/cray/pe/gcc/11.2.0/bin:/opt/cray/pe/perftools/22.12.0/bin:/opt/cray/pe/papi/6.0.0.17/bin:/opt/cray/libfabric/1.11.0.4.111/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/sbin:/opt/cray/pe/bin
++++ export CONDA_PREFIX=/N/u/jmelms/BigRed200/envs/earth2mip
++++ CONDA_PREFIX=/N/u/jmelms/BigRed200/envs/earth2mip
++++ export CONDA_SHLVL=7
++++ CONDA_SHLVL=7
++++ export CONDA_DEFAULT_ENV=earth2mip
++++ CONDA_DEFAULT_ENV=earth2mip
++++ export 'CONDA_PROMPT_MODIFIER=(earth2mip) '
++++ CONDA_PROMPT_MODIFIER='(earth2mip) '
++++ export CONDA_PREFIX_6=/geode2/home/u040/jmelms/BigRed200/envs/earth2mip
++++ CONDA_PREFIX_6=/geode2/home/u040/jmelms/BigRed200/envs/earth2mip
++++ export CONDA_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/conda
++++ CONDA_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/python
++++ CONDA_PYTHON_EXE=/N/slate/jmelms/software/bigred200/miniconda3/bin/python
++++ . /N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/libglib_activate.sh
+++++ export GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
+++++ GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
+++++ export GSETTINGS_SCHEMA_DIR=/N/u/jmelms/BigRed200/envs/earth2mip/share/glib-2.0/schemas
+++++ GSETTINGS_SCHEMA_DIR=/N/u/jmelms/BigRed200/envs/earth2mip/share/glib-2.0/schemas
++++ . /N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/libxml2_activate.sh
+++++ test -n ''
+++++ xml_catalog_files_libxml2=
+++++ XML_CATALOG_FILES=
+++++ conda_catalog_files=
+++++ ifs_libxml2=' 	
+'
+++++ IFS=' '
+++++ rem=/N/u/jmelms/BigRed200/envs/earth2mip
+++++ for pre in ${rem}
+++++ test '' = /N/u/jmelms/BigRed200/envs/earth2mip
+++++ conda_catalog_files=/N/u/jmelms/BigRed200/envs/earth2mip
+++++ rem=
+++++ IFS=' 	
+'
+++++ conda_catalog_files='file:///N/u/jmelms/BigRed200/envs/earth2mip/etc/xml/catalog file:///etc/xml/catalog'
+++++ export 'XML_CATALOG_FILES=file:///N/u/jmelms/BigRed200/envs/earth2mip/etc/xml/catalog file:///etc/xml/catalog'
+++++ XML_CATALOG_FILES='file:///N/u/jmelms/BigRed200/envs/earth2mip/etc/xml/catalog file:///etc/xml/catalog'
+++++ unset conda_catalog_files ifs_libxml2 rem
++++ . /N/u/jmelms/BigRed200/envs/earth2mip/etc/conda/activate.d/proj4-activate.sh
+++++ '[' -n '' ']'
+++++ '[' -d /N/u/jmelms/BigRed200/envs/earth2mip/share/proj ']'
+++++ export PROJ_DATA=/N/u/jmelms/BigRed200/envs/earth2mip/share/proj
+++++ PROJ_DATA=/N/u/jmelms/BigRed200/envs/earth2mip/share/proj
+++++ '[' -f /N/u/jmelms/BigRed200/envs/earth2mip/share/proj/copyright_and_licenses.csv ']'
+++++ export PROJ_NETWORK=ON
+++++ PROJ_NETWORK=ON
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
++ python run_inference.py
+/N/u/jmelms/BigRed200/envs/earth2mip/lib/python3.10/site-packages/gribapi/__init__.py:23: UserWarning: ecCodes 2.31.0 or higher is recommended. You are running version 2.30.0
+  warnings.warn(
+/geode2/home/u040/jmelms/BigRed200/projects/dynamical-tests-FCN/code/earth2mip-main/models/fcnv2_sm/inference_utils.py:108: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  ds["time"] = ds["time"].astype("datetime64[s]").astype("int")
