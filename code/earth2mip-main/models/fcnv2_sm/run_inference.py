@@ -5,8 +5,8 @@ import datetime
 
 run_custom_inference(
         data_source_path="/N/slate/jmelms/projects/FCN_dynamical_testing/data/initial_conditions/processed_ic_sets/test_data_source/",
-        output_path="/N/slate/jmelms/projects/FCN_dynamical_testing/data/output/full_output_corrected.nc",
-        n_iters=52,
+        output_path="/N/slate/jmelms/projects/FCN_dynamical_testing/data/output/test2.nc",
+        n_iters=3,
         start_time=datetime.datetime(1970, 1, 1),
         device="cpu",
         vocal=True

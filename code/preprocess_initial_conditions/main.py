@@ -163,10 +163,6 @@ def main(
     print(ds_73)
     # print(ds_73.coords["channel"])
 
-    breakpoint()
-
-    print("mslp is: ", ds_73["msl"])
-
     # inform user
     print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
 
@@ -192,7 +188,7 @@ if __name__ == "__main__":
         stds_fname="global_stds.npy",
 
         output_to_dir=data_dir / "processed_ic_sets" / "test_data_source" / "idealized",
-        f_out_name="1001.h5",
+        f_out_name="1970.h5",
 
         nlat=721,
         keep_plevs=[1000, 925, 850, 700, 600, 500,
