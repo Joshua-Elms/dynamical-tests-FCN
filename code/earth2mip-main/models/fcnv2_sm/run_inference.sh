@@ -1,16 +1,16 @@
 #!/bin/bash
 
 #SBATCH -J fcnv2_sm_inference
-#SBATCH -p debug
+#SBATCH -p general
 #SBATCH -o output.out
 #SBATCH -e log.err
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jmelms@iu.edu
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=32
-#SBATCH --time=01:00:00
-#SBATCH --mem=200G
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=24:00:00
+#SBATCH --mem=64GB
 #SBATCH -A r00389
 
 export HDF5_USE_FILE_LOCKING=FALSE
