@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import xarray as xr
+import json
 from pathlib import Path
 import scipy
 
@@ -55,13 +56,15 @@ def main(
         output_to_dir: Path,
         f_out_name: str,
         nlat: int,
-        keep_plevs: list[int]
+        keep_plevs: list[int],
+        include_dewpt: bool,
+        metadata_attrs: dict,
 ):
 
     df, nlev = read_to_df(fort_output_dir, f_in_name, nlat)
 
     # extract vertical RH profile, convert to percentage
-    rh = df["ZRH"].values[:nlev] * 100
+    rh_raw = df["ZRH"].values[:nlev] * 100
 
     # remove RH from dataframe
     df = df.drop(columns=["ZRH"])
@@ -80,7 +83,7 @@ def main(
     keep_idxs = np.where(np.isin(plev, keep_plevs))[0]
 
     # similar to above, tile across lat to match the shape of the other variables
-    rh = np.tile(rh[keep_idxs], (nlat, 1))
+    rh = np.tile(rh_raw[keep_idxs], (nlat, 1))
 
     # create pressure vars, both constant due to initiation at sea level
     sp = np.full_like(tcwv, 1013.25) * 100  # convert hPa to Pa
@@ -99,7 +102,7 @@ def main(
     )
 
     # iteratively add pressure-coordinate necessary variables and levels to the dataset
-    for lname, uname in [("u", "ZU"), ("v", "ZV"), ("t", "ZT"), ("z", "ZPHI_F"), (("r", "RH"), rh)]:
+    for lname, uname in [("u", "ZU"), ("v", "ZV"), ("t", "ZT"), ("z", "ZPHI_F"), ("q", "ZQ"), (("r", "RH"), rh)]:
 
         # rh case, processing done already
         if isinstance(lname, tuple):
@@ -131,6 +134,17 @@ def main(
     # find channel order
     channels = np.loadtxt(metadata_dir / channels_fname, dtype=str)
 
+    # add dewpoint temperature if requested
+    if include_dewpt:
+        t2mC = df["ZT"].values.reshape(nlat, nlev)[:, 0] - 273.15
+        # calculate dewpoint temperature, formula from https://en.wikipedia.org/wiki/Dew_point
+        b = 17.625
+        c = 243.04
+        gamma = np.log(rh_raw[0] / 100) + (b * t2mC) / (c + t2mC)
+        dewpt = (c * gamma) / (b - gamma) + 273.15
+
+        ds_73["2d"] = (["lat"], dewpt)
+
     # convert from data variables to channel as coordinate
     arr_lst = [ds_73[ch].data for ch in channels]
     stacked = np.stack(arr_lst, axis=0)
@@ -139,10 +153,10 @@ def main(
 
     # now standardize the dataset
     # means and stds are global and time invariant, unlike other versions of FCN
-    means = np.load(metadata_dir / means_fname).reshape(-1, 1)
-    stds = np.load(metadata_dir / stds_fname).reshape(-1, 1)
+    # means = np.load(metadata_dir / means_fname).reshape(-1, 1)
+    # stds = np.load(metadata_dir / stds_fname).reshape(-1, 1)
 
-    ds_73 = (ds_73 - means) / stds
+    # ds_73 = (ds_73 - means) / stds
     # print out means and stds for each channel for sanity check
     # for i, (ch, m, s) in enumerate(zip(channels, means, stds)):
     #     print(f"{ch}: {m} {s}")
@@ -157,14 +171,31 @@ def main(
     ds_73 = ds_73.expand_dims({"time": [0]}, axis=0)
 
     # save to disk
-    ds_73.to_netcdf(output_to_dir / f_out_name)
+    data_dir = output_to_dir / 'data'
+    data_dir.mkdir(parents=True, exist_ok=True)
+    ds_73.to_netcdf(data_dir / f_out_name)
+
+    # save metadata to data.json
+    metadata = {
+        "h5_path": "data",
+        "dims": ["time", "channel", "lat", "lon"],
+        "coords": {
+            "channel": channels.tolist(),
+            "lat": lat.tolist(),
+            "lon": lon.tolist()
+        },
+        "dhours": 6,
+        "attrs": metadata_attrs
+    }
+    with open(output_to_dir / "data.json", "w") as f:
+        json.dump(metadata, f, indent=4)
 
     # look at data
     print(ds_73)
-    # print(ds_73.coords["channel"])
+    print(repr(ds_73.coords["channel"].values))
 
     # inform user
-    print(f"Preprocessing complete, saved to {output_to_dir / f_out_name}")
+    print(f"Preprocessing complete, saved to {output_to_dir}")
 
 
 if __name__ == "__main__":
@@ -183,14 +214,18 @@ if __name__ == "__main__":
         lat_fname="latitude.npy",
         lon_fname="longitude.npy",
         lev_fname="p_eta_levels_full.txt",
-        channels_fname="fcnv2_sm_channel_order.txt",
+        channels_fname="hens_channel_order.txt", # see dewpt note below
         means_fname="global_means.npy",
         stds_fname="global_stds.npy",
 
-        output_to_dir=data_dir / "processed_ic_sets" / "test_data_source" / "idealized",
+        output_to_dir=data_dir / "processed_ic_sets" / "hens_compliant",
         f_out_name="1970.h5",
 
         nlat=721,
         keep_plevs=[1000, 925, 850, 700, 600, 500,
-                    400, 300, 250, 200, 150, 100, 50]  # 13 levels used for 73 ch SFNO
+                    400, 300, 250, 200, 150, 100, 50],  # 13 levels used for 73 ch SFNO
+
+        include_dewpt=True, # must use 74 ch hens_channel_order.txt for dewpt and q instead of r
+        metadata_attrs={}
+
     )
