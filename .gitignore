@@ -399,3 +399,5 @@ docs/examples
 !docs/_static
 
 #############
+
+*.gif
