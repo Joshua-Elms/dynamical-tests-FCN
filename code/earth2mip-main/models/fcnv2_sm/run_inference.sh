@@ -8,9 +8,9 @@
 #SBATCH --mail-user=jmelms@iu.edu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=24:00:00
-#SBATCH --mem=64GB
+#SBATCH --cpus-per-task=128
+#SBATCH --time=12:00:00
+#SBATCH --mem=200GB
 #SBATCH -A r00389
 
 export HDF5_USE_FILE_LOCKING=FALSE

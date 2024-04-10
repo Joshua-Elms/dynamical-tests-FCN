@@ -208,24 +208,24 @@ if __name__ == "__main__":
 
     main(
         fort_output_dir=data_dir / "raw_fort_output",
-        f_in_name="fields1.csv",
+        f_in_name="default.csv",
 
         metadata_dir=metadata_dir,
         lat_fname="latitude.npy",
         lon_fname="longitude.npy",
         lev_fname="p_eta_levels_full.txt",
-        channels_fname="hens_channel_order.txt", # see dewpt note below
+        channels_fname="fcnv2_sm_channel_order.txt", # see dewpt note below
         means_fname="global_means.npy",
         stds_fname="global_stds.npy",
 
-        output_to_dir=data_dir / "processed_ic_sets" / "hens_compliant",
+        output_to_dir=data_dir / "processed_ic_sets" / "default_60t",
         f_out_name="1970.h5",
 
         nlat=721,
         keep_plevs=[1000, 925, 850, 700, 600, 500,
                     400, 300, 250, 200, 150, 100, 50],  # 13 levels used for 73 ch SFNO
 
-        include_dewpt=True, # must use 74 ch hens_channel_order.txt for dewpt and q instead of r
+        include_dewpt=False, # must use 74 ch hens_channel_order.txt for dewpt and q instead of r
         metadata_attrs={}
 
     )
