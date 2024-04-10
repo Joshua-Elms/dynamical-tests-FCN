@@ -128,4 +128,8 @@ export CONDA_PYTHON_EXE='\''/N/slate/jmelms/software/bigred200/miniconda3/bin/py
 + python run_inference.py
 /N/u/jmelms/BigRed200/envs/earth2mip/lib/python3.10/site-packages/gribapi/__init__.py:23: UserWarning: ecCodes 2.31.0 or higher is recommended. You are running version 2.30.0
   warnings.warn(
-slurmstepd: error: *** JOB 2698287 ON nid0421 CANCELLED AT 2024-04-09T22:57:15 ***
+/geode2/home/u040/jmelms/BigRed200/projects/dynamical-tests-FCN/code/earth2mip-main/models/fcnv2_sm/inference_utils.py:108: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  ds["time"] = ds["time"].astype("datetime64[s]").astype("int")
+/geode2/home/u040/jmelms/BigRed200/projects/dynamical-tests-FCN/code/earth2mip-main/models/fcnv2_sm/inference_utils.py:108: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  ds["time"] = ds["time"].astype("datetime64[s]").astype("int")
++ echo 'Inference script complete'
