@@ -6,11 +6,12 @@ import os
 from time import perf_counter
 
 
-def _setup(data_source_path, device, ngpus, vocal, mode: str):
+def _setup(model_name, data_source_path, device, ngpus, vocal, mode: str):
     """
     Set environment variables, load model, and load data source.
 
     Parameters:
+        model_name (str): Name of the model. See model registry (https://github.com/NVIDIA/earth2mip) for options.
         data_source_path (str): Path to the directory containing a data.json file and subdirectories with HDF5 files. Not used if mode is "simple".
         device (str): Device to run the model on.
         ngpus (int): Number of GPUs to use.
@@ -117,6 +118,7 @@ def _save_output(ds, output_path, vocal):
 
 
 def run_custom_inference(
+        model_name: str,
         data_source_path: str,
         output_path: str,
         n_iters: int,
@@ -218,6 +220,7 @@ def run_custom_inference(
 
 
 def run_simple_inference(
+    model_name: str,
     output_path: str,
     n_iters: int,
     start_time: datetime.datetime,
